@@ -24,6 +24,8 @@ namespace WindowsStartup.Views
             {
                 TbCmd.Text += s;
                 TbCmd.Text += Environment.NewLine;
+                TbCmd.Select(TbCmd.Text.Length, 0);
+                TbCmd.ScrollToCaret();
             }));
         }
 
@@ -96,12 +98,14 @@ namespace WindowsStartup.Views
 
         private void BtTaskAdd_Click(object sender, EventArgs e)
         {
+            UICmd("准备添加 计划任务 自启动");
             var task = TaskSchedulerTool.Create(AppName, AppFile, "Tom", "测试程序自启动计划任务");
             UICmd("添加 计划任务启动 成功");
         }
 
         private void BtTaskDel_Click(object sender, EventArgs e)
         {
+            UICmd("准备删除 计划任务 自启动");
             TaskSchedulerTool.Delete(AppName);
             UICmd("删除 计划任务启动 成功");
         }
