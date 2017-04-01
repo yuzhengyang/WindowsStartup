@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.IO;
 using System.Windows.Forms;
 using WindowsStartup.Utils;
@@ -96,6 +97,7 @@ namespace WindowsStartup.Views
 
         #endregion
 
+        #region 添加 Windows 计划任务
         private void BtTaskAdd_Click(object sender, EventArgs e)
         {
             UICmd("准备添加 计划任务 自启动");
@@ -109,5 +111,6 @@ namespace WindowsStartup.Views
             TaskSchedulerTool.Delete(AppName);
             UICmd("删除 计划任务启动 成功");
         }
+        #endregion
     }
 }

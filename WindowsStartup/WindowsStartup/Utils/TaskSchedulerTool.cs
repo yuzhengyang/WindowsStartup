@@ -78,27 +78,21 @@ namespace WindowsStartup.Utils
             {
                 //删除重名任务
                 Delete(name);
-
                 //new scheduler
                 TaskSchedulerClass scheduler = new TaskSchedulerClass();
                 //pc-name/ip,username,domain,password
                 scheduler.Connect(null, null, null, null);
                 //get scheduler folder
                 ITaskFolder folder = scheduler.GetFolder("\\");
-
-
                 //set base attr 
                 ITaskDefinition task = scheduler.NewTask(0);
                 task.RegistrationInfo.Author = author;//创建者
                 task.RegistrationInfo.Description = desc;//描述
-
                 //set trigger  (IDailyTrigger ITimeTrigger)
                 task.Triggers.Create(_TASK_TRIGGER_TYPE2.TASK_TRIGGER_LOGON);
-
                 //set action
                 IExecAction action = (IExecAction)task.Actions.Create(_TASK_ACTION_TYPE.TASK_ACTION_EXEC);
                 action.Path = file;
-
                 task.Settings.ExecutionTimeLimit = "PT0S"; //运行任务时间超时停止任务吗? PTOS 不开启超时
                 task.Settings.DisallowStartIfOnBatteries = false;//只有在交流电源下才执行
                 task.Settings.RunOnlyIfIdle = false;//仅当计算机空闲下才执行
@@ -116,7 +110,6 @@ namespace WindowsStartup.Utils
             {
                 throw ex;
             }
-
         }
         public static void Delete(string name)
         {
